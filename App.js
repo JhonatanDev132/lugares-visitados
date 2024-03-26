@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, Image, StyleSheet, Text, View } from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
 import * as ImagePicker from 'expo-image-picker'
 import { useState } from 'react';
@@ -14,18 +14,10 @@ export default function App() {
     <View style={styles.container}>
       <View style={styles.campoFoto}>
           <View style={styles.viewFoto}>
-
+            <Image/>
           </View>
           <View>
             <Button title='Tirar Foto'/>
-          </View>
-      </View>
-      <View style={styles.campoMapa}>
-          <View style={styles.viewMapa}>
-            <MapView style={styles.mapa}/>
-          </View>
-          <View>
-            <Button title='Pegar localização'/>
           </View>
       </View>
     </View>
@@ -39,22 +31,11 @@ const styles = StyleSheet.create({
   },
   viewFoto: {
     alignItems: "center",
-    justifyContent: "center"
-  },
-  viewMapa: {
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  mapa: {
-    width: "70%",
-    height: "70%"
+    justifyContent: "center",
+    flex: 1
   },
   campoFoto: {
     flex: 1,
     backgroundColor: "green"
   },
-  campoMapa: {
-    backgroundColor: "yellow",
-    flex: 1
-  }
 });
