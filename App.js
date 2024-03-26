@@ -1,15 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, Image, StyleSheet, Text, View } from 'react-native';
+import { Alert, Button, Image, StyleSheet, Text, View } from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
+import * as Location from 'expo-location';
 import * as ImagePicker from 'expo-image-picker';
 import * as MediaLibrary from 'expo-media-library';
 import { useEffect, useState } from 'react';
 
 export default function App() {
   const [foto, setFoto] = useState("");
+  const [minhaLocalização, setMinhaLocalizacao] = useState("");
 
   const [status, requestPermission] = ImagePicker.useCameraPermissions(); 
-  console.log(status);
 
   useEffect(() => {
     async function verificaPermissoes(){
@@ -19,6 +20,22 @@ export default function App() {
 
     verificaPermissoes();
   },[])
+
+  useEffect(() => {
+    async function obterLocalizacao() {
+      const { status } = await Location.requestForegroundPermissionsAsync();
+
+      if (status !== "granted") {
+        Alert.alert("Ops!", "Você não autorizou o uso de geolocalização");
+        return;
+      }
+
+      let localizacaoAtual = await Location.getCurrentPositionAsync({});
+      setMinhaLocalizacao(localizacaoAtual);
+    }
+    obterLocalizacao();
+  },[]);
+
 
   const tirarFoto = async () => {
     const imagem = await ImagePicker.launchCameraAsync({
@@ -33,6 +50,26 @@ export default function App() {
       setFoto(imagem.assets[0].uri);
     }
   }
+
+  const [localizacao, setLocalizacao] = useState("");
+
+  const regiaoInicialMapa = {
+    // São Paulo
+    latitude: -23.533773,
+    longitude: -46.65529,
+
+    latitudeDelta: 40,
+    longitudeDelta: 40,
+  };
+
+  const marcarLocal = () => {
+    setLocalizacao({
+      latitude: minhaLocalização.coords.latitude,
+      longitude: minhaLocalização.coords.longitude,
+      latitudeDelta: 0.005,
+      longitudeDelta: 0.004,
+    });
+  };
   return (
     <>
       <StatusBar />
@@ -51,9 +88,16 @@ export default function App() {
             <Button onPress={tirarFoto} title='Tirar Foto'/>
       </View>
       <View style={styles.campoMapa}>
-          <View>
-            <MapView></MapView>
+          <View style={styles.center}>
+            <MapView mapType='standard'
+            style={styles.mapa}
+            region={localizacao ?? regiaoInicialMapa}
+            >
+              {localizacao && <Marker coordinate={localizacao} />}
+            </MapView>
           </View>
+
+          <Button title='Pegar Localização' onPress={marcarLocal}/>
       </View>
     </View>
     </>
@@ -65,7 +109,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   campoFoto: {
-    flex: 1,
+    flex: 1.5,
     backgroundColor: "green",
     justifyContent: "center",
   },
@@ -78,6 +122,15 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   },
   campoMapa: {
-
+    flex: 1,
+    backgroundColor: "yellow",
+    justifyContent: "center"
   },
+  mapa: {
+    width: "80%",
+    height: "80%",
+  },
+  center: {
+    alignItems: "center"
+  }
 });
