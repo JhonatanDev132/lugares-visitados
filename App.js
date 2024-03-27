@@ -15,13 +15,14 @@ export default function App() {
     <StatusBar barStyle = 'default'/>
     <NavigationContainer>
       <Stack.Navigator
-      initialRouteName='Home'
-      screenOptions={{
-        headerStyle: { backgroundColor: "#2b2b2b" },
-        headerTintColor: "white"
-      }}/>
-      <Stack.Screen name='Home' component={Home} options={{ headerShown: false }}/>
-      <Stack.Screen name='RegistrarLugar' component={RegistrarLugar} options={{title: "Registre um momento"}}/>
+        initialRouteName='Home'
+        screenOptions={{
+          headerStyle: { backgroundColor: "#2b2b2b" },
+          headerTintColor: "white"
+        }}>
+        <Stack.Screen name='Home' component={Home} options={{ headerShown: false }}/>
+        <Stack.Screen name='RegistrarLugar' component={RegistrarLugar} options={{title: "Registre um momento"}}/>
+      </Stack.Navigator>
     </NavigationContainer>
     </>
   )
