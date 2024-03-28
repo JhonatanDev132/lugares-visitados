@@ -5,18 +5,18 @@ import { StatusBar } from 'expo-status-bar'
 
 
 
-export default function Home() {
+export default function Home({ navigation }) {
   return (
     <SafeAreaView style={styles.subcontainer}>
       <StatusBar/>
-      <ScrollView style={styles.center}>
+      <ScrollView >
         <View style={styles.viewHome}>
           <View>
           <Text style={styles.titulo}>Momentos Bons</Text>
           </View>
 
           <View style={styles.campoBotao}>
-            <Pressable style={styles.botao}>
+            <Pressable style={styles.botao} onPress={() => navigation.navigate("RegistrarLugar")}>
               <Text style={styles.textoBotao}>Criar um momento</Text>
             </Pressable>
 
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   },
   viewHome: {
     alignItems: "center",
-    backgroundColor: "#EEEEEE"
+    backgroundColor: "#EEEEEE",
   },
   titulo: {
     fontSize: 30,

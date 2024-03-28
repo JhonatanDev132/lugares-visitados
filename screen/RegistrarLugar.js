@@ -73,6 +73,14 @@ export default function RegistrarLugar() {
       
     });
   };
+
+  const Salvar = () => {
+    try {
+      
+    } catch (error) {
+      
+    }
+  }
   return (
     <>
       <StatusBar />
@@ -81,7 +89,7 @@ export default function RegistrarLugar() {
 
           <View style={styles.foto}>
             {foto ? (
-              <Image source={{ uri: foto }} style={{width: 230, height: 230}} />
+              <Image source={{ uri: foto }} style={{width: 200, height: 200}} />
             ) : (
               <Text style={styles.texto}>Sem Foto!</Text>
             )}
@@ -110,6 +118,12 @@ export default function RegistrarLugar() {
           </Pressable>
           </View>
       </View>
+
+      <View style={styles.salvar}>
+          <Pressable style={styles.botaoSalvar}>
+            <Text style={styles.textoBotao}>Salvar Momento</Text>
+          </Pressable>
+      </View>
     </View>
     </>
   );
@@ -117,25 +131,27 @@ export default function RegistrarLugar() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 2,
+    flex: 3,
+    backgroundColor: "#EEEEEE"
   },
   campoFoto: {
     flex: 1.5,
-    backgroundColor: "#EEEEEE",
     justifyContent: "center",
+    paddingBottom: 50,
+    paddingTop: 60
   },
   foto: {
     alignItems: "center",
-    marginBottom: 30
+    marginBottom: 20
   },
   texto: {
     fontSize: 30,
     fontWeight: "bold"
   },
   campoMapa: {
-    flex: 1,
-    backgroundColor: "#EEEEEE",
+    flex: 1.5,
     justifyContent: "center",
+    paddingVertical: 10   
   },
   mapa: {
     width: "100%",
@@ -151,6 +167,15 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   textoBotao: {
-    color: "#EEEEEE"
+    color: "#EEEEEE",
+    textAlign: "center"
+  },
+  salvar: {
+    position: "relative",
+    justifyContent: "flex-end"
+  },
+  botaoSalvar: {
+    backgroundColor: "#2b2b2b",
+    padding: 10,
   },
 });
