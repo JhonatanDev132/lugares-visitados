@@ -79,11 +79,27 @@ export default function RegistrarLugar() {
     try {
       const momentoSalvos = await AsyncStorage.getItem("@lugarsalvo");
       const listaDeMomentos = momentoSalvos ? JSON.parse(momentoSalvos) : [];
-      listaDeMomentos.push()
+      
+      const novoMomento = {
+        foto: foto,
+        localizacao: localizacao,
+      };
+      listaDeMomentos.push(novoMomento);
+
+      await AsyncStorage.setItem("@lugarsalvo", JSON.stringify(listaDeMomentos));
+
+      Alert.alert("Sucesso!", "Momento salvo com sucesso!");
+
     } catch (error) {
       
+      console.error("Erro ao salvar o momento: ", error);
+      Alert.alert("Erro!", "Ocorreu um erro ao salvor o momento");
     }
-  }
+
+  };
+
+
+
   return (
     <>
       <StatusBar />
@@ -123,7 +139,7 @@ export default function RegistrarLugar() {
       </View>
 
       <View style={styles.salvar}>
-          <Pressable style={styles.botaoSalvar}>
+          <Pressable style={styles.botaoSalvar} onPress={Salvar}>
             <Text style={styles.textoBotao}>Salvar Momento</Text>
           </Pressable>
       </View>

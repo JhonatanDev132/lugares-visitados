@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import RegistrarLugar from './screen/RegistrarLugar'
 import Home from './screen/Home'
+import MomentosSalvos from './screen/MomentosSalvos'
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,7 @@ export default function App() {
         }}>
         <Stack.Screen name='Home' component={Home} options={{ headerShown: false }}/>
         <Stack.Screen name='RegistrarLugar' component={RegistrarLugar} options={{title: "Registre um momento"}}/>
+        <Stack.Screen name='MomentosSalvos' component={MomentosSalvos} options={{title: "Veja seus momentos"}}/>
       </Stack.Navigator>
     </NavigationContainer>
     </>

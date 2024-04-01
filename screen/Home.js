@@ -20,7 +20,7 @@ export default function Home({ navigation }) {
               <Text style={styles.textoBotao}>Criar um momento</Text>
             </Pressable>
 
-            <Pressable style={styles.botao}>
+            <Pressable style={styles.botao} onPress={() => navigation.navigate("MomentosSalvos")}>
               <Text style={styles.textoBotao}>Momentos Salvos</Text>
             </Pressable>
           </View>
