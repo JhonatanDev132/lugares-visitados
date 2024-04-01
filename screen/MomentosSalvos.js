@@ -73,10 +73,9 @@ const styles = StyleSheet.create({
         marginBottom: 20,
       },
       imagem: {
-        width:  150,
-        height: 150,
-        borderRadius: 2,
-        marginRight: 20
+        width:  130,
+        height: 130,
+        
       },
       descricao: {
         fontSize: 16,
@@ -85,15 +84,16 @@ const styles = StyleSheet.create({
         fontSize: 16,
       },
       momento: {
-        alignItems: "center",
+
         marginVertical: 15,
         flexDirection: "row",
         padding: 15,
-        borderWidth: 1
+        borderWidth: 1,
+        justifyContent: "space-between"
       },
       map: {
-        width: 150,
-        height: 150,
+        width: 130,
+        height: 130,
         borderRadius: 10,
     },
 })
