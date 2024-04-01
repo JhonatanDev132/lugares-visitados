@@ -41,16 +41,20 @@ export default function RegistrarLugar() {
 
 
   const tirarFoto = async () => {
-    const imagem = await ImagePicker.launchCameraAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: false,
-      aspect: [16, 9],
-      quality: 1
-    });
-
-    if (!imagem.canceled) {
-      await MediaLibrary.saveToLibraryAsync(imagem.assets[0].uri);
-      setFoto(imagem.assets[0].uri);
+    try {
+      const imagem = await ImagePicker.launchCameraAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: false,
+        aspect: [16, 9],
+        quality: 1
+      });
+  
+      if (!imagem.canceled) {
+        await MediaLibrary.saveToLibraryAsync(imagem.assets[0].uri);
+        setFoto(imagem.assets[0].uri);
+      }
+    } catch (error) {
+      console.error("Erro ao tirar foto:", error);
     }
   }
 
