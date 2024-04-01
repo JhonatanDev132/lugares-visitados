@@ -5,6 +5,7 @@ import * as Location from 'expo-location';
 import * as ImagePicker from 'expo-image-picker';
 import * as MediaLibrary from 'expo-media-library';
 import { useEffect, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function RegistrarLugar() {
   const [foto, setFoto] = useState("");
@@ -74,9 +75,11 @@ export default function RegistrarLugar() {
     });
   };
 
-  const Salvar = () => {
+  const Salvar = async () => {
     try {
-      
+      const momentoSalvos = await AsyncStorage.getItem("@lugarsalvo");
+      const listaDeMomentos = momentoSalvos ? JSON.parse(momentoSalvos) : [];
+      listaDeMomentos.push()
     } catch (error) {
       
     }
