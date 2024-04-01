@@ -10,8 +10,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function RegistrarLugar() {
   const [foto, setFoto] = useState("");
   const [minhaLocalização, setMinhaLocalizacao] = useState(null);
-
   const [status, requestPermission] = ImagePicker.useCameraPermissions(); 
+
 
   useEffect(() => {
     async function verificaPermissoes(){

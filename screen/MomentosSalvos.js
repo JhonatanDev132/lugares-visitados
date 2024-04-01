@@ -27,7 +27,7 @@ export default function MomentosSalvos() {
       {momentos.length > 0 ? (
         <FlatList
          data={momentos}
-         keyExtractor={(item, index) => index.toString()}
+         keyExtractor={(index) => index.toString()}
          renderItem={({ item }) => (
             <View style={styles.momento}>
                 <Image source={{ uri: item.foto}} style={styles.imagem}/>
